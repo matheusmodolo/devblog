@@ -32,13 +32,15 @@ Route::prefix('/admin')->middleware(App\Http\Middleware\AdminMiddleware::class)-
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
-    
-    Route::resource('desenvolvedores', DesenvolvedorController::class);
+
+    // Route::resource('desenvolvedores', DesenvolvedorController::class);
+    Route::resource('desenvolvedores', DesenvolvedorController::class)
+        ->parameters(['desenvolvedores' => 'desenvolvedor']);
 });
 
 
 Route::get('/teste', function () {
-   dd(Auth::user(), Auth::user()->is_admin);
+    dd(Auth::user(), Auth::user()->is_admin);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -1,24 +1,75 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Desenvolvedores
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                Desenvolvedores
+            </h2>
+            <a href="{{ route('desenvolvedores.create') }}"
+                class="inline-flex items-center px-3 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">Novo</a>
+        </div>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="space-y-6 max-w-7xl mx-auto sm:px-6 lg:px-8">
             @forelse ($desenvolvedores as $desenvolvedor)
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    {{ $desenvolvedor }}
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100 flex items-center">
+
+                        <!-- Foto -->
+                        <img class="h-20 w-20 rounded-full"
+                            src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1…"
+                            alt="" />
+                        {{-- tratar a imagem depois --}}
+
+                        <!-- Conteúdo textual -->
+                        <div class="flex-1 ml-6">
+
+                            <!-- Nome / e-mail e Botões -->
+                            <div class="flex justify-between items-start">
+
+                                <!-- Nome + e-mail com borda abaixo -->
+                                <div class="border-b border-gray-200 dark:border-gray-700 pb-2 mb-2">
+                                    <h3 class="text-lg text-gray-800 dark:text-gray-200 leading-tight">
+                                        {{ $desenvolvedor->nome }}
+                                    </h3>
+                                    <p class="text-md font-medium text-gray-400">
+                                        {{ $desenvolvedor->email }}
+                                    </p>
+                                </div>
+
+                                <!-- Botões -->
+                                <div class="flex items-center space-x-2">
+                                    <a href="{{ route('desenvolvedores.edit', $desenvolvedor) }}">
+                                        <x-secondary-button class="px-3 py-2">
+                                            Editar
+                                        </x-secondary-button>
+                                    </a>
+                                    <form method="POST" action="{{ route('desenvolvedores.destroy', $desenvolvedor) }}"
+                                        onsubmit="return confirm('Deseja realmente excluir?')">
+                                        @method('DELETE') @csrf
+                                        <x-danger-button class="px-3 py-2">
+                                            Excluir
+                                        </x-danger-button>
+                                    </form>
+                                </div>
+
+                            </div>
+
+                            <!-- Biografia abaixo, ocupando toda a largura restante -->
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                                {{ $desenvolvedor->biografia }}
+                            </p>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
+
             @empty
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
-                    Ops! Nenhum desenvolvedor encontrado
+                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 text-gray-900 dark:text-gray-100">
+                        Ops! Nenhum desenvolvedor encontrado
+                    </div>
                 </div>
-            </div>
             @endforelse
         </div>
     </div>
