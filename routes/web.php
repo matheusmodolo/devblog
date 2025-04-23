@@ -32,6 +32,7 @@ Route::prefix('/admin')->middleware(App\Http\Middleware\AdminMiddleware::class)-
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
+    
     Route::resource('desenvolvedores', DesenvolvedorController::class);
 });
 
