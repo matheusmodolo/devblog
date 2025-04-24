@@ -195,5 +195,7 @@
     "Ensure your account is using a long, random password to stay secure": "Certifique-se de que sua conta esteja usando uma senha longa e aleatória para permanecer segura",
     "Log in to your account": "Entrar na sua conta",
     "Enter your email and password below to log in": "Digite seu e-mail e senha abaixo para entrar",
-    "Don't have an account?": "Não tem uma conta?"
+    "Don't have an account?": "Não tem uma conta?",
+    "auth.failed": "Estas credenciais não correspondem aos nossos registros.",
+    "auth.throttle": "Muitas tentativas de login. Por favor, tente novamente em :minutes minutos e :seconds segundos."
 }
