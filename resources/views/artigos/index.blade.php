@@ -47,9 +47,9 @@
                                 {{ $artigo->titulo }}
                             </h2>
 
-                            {{-- Trecho do Conteúdo (primeiros 50 caracteres) --}}
+                            {{-- Trecho do Conteúdo (primeiros 300 caracteres) --}}
                             <p class="mt-2 text-gray-600 dark:text-gray-300">
-                                {{ \Illuminate\Support\Str::limit(strip_tags($artigo->conteudo), 50) }}
+                                {{ \Illuminate\Support\Str::limit(strip_tags($artigo->conteudo), 300) }}
                             </p>
                         </div>
 
