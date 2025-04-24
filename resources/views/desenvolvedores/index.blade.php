@@ -16,22 +16,19 @@
                     <div class="p-6 text-gray-900 dark:text-gray-100 flex items-center">
 
                         <!-- Foto -->
-                        <img class="h-20 w-20 rounded-full"
-                            src="https://images.unsplash.com/photo-1499714608240-22fc6ad53fb2?ixlib=rb-1.2.1…"
+                        <img class="h-20 w-20 rounded-full" src="{{ asset('storage/' . $desenvolvedor->foto) }}"
                             alt="" />
-                        {{-- tratar a imagem depois --}}
 
                         <!-- Conteúdo textual -->
                         <div class="flex-1 ml-6">
 
-                            <!-- Nome / e-mail e Botões -->
                             <div class="flex justify-between items-start">
-
-                                <!-- Nome + e-mail com borda abaixo -->
                                 <div class="border-b border-gray-200 dark:border-gray-700 pb-2 mb-2">
+                                    <!-- Nome -->
                                     <h3 class="text-lg text-gray-800 dark:text-gray-200 leading-tight">
                                         {{ $desenvolvedor->nome }}
                                     </h3>
+                                    <!-- Email -->
                                     <p class="text-md font-medium text-gray-400">
                                         {{ $desenvolvedor->email }}
                                     </p>
@@ -55,7 +52,7 @@
 
                             </div>
 
-                            <!-- Biografia abaixo, ocupando toda a largura restante -->
+                            <!-- Biografia -->
                             <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                                 {{ $desenvolvedor->biografia }}
                             </p>
@@ -63,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- Caso não encontre nenhum desenvolvedor -->
             @empty
                 <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900 dark:text-gray-100">

@@ -1,10 +1,10 @@
 @if (isset($desenvolvedor->id))
     <form method="POST" action="{{ route('desenvolvedores.update', ['desenvolvedor' => $desenvolvedor->id]) }}"
-        class="space-y-6 p-6 text-gray-900 dark:text-gray-100">
+        enctype="multipart/form-data" class="space-y-6 p-6 text-gray-900 dark:text-gray-100">
         @csrf
         @method('PUT')
     @else
-        <form method="POST" action="{{ route('desenvolvedores.store') }}"
+        <form method="POST" action="{{ route('desenvolvedores.store') }}" enctype="multipart/form-data"
             class="space-y-6 p-6 text-gray-900 dark:text-gray-100">
             @csrf
 @endif
@@ -12,8 +12,8 @@
 {{-- Nome --}}
 <div style="margin: 0;">
     <x-input-label for="nome" value="Nome" />
-    <x-text-input id="nome" name="nome" type="text" value="{{ $desenvolvedor->nome ?? old('nome') }}" required
-        autofocus class="mt-1 block w-full" />
+    <x-text-input id="nome" name="nome" type="text" value="{{ $desenvolvedor->nome ?? old('nome') }}"
+        required autofocus class="mt-1 block w-full" />
     <x-input-error :messages="$errors->get('nome')" class="mt-2" />
 </div>
 
@@ -27,14 +27,15 @@
 
 {{-- Foto --}}
 <div>
-    <x-input-label for="foto" value="Foto (opcional)" />
+    <x-input-label for="foto" value="Foto" />
     <input id="foto" name="foto" type="file" accept="image/*"
-        class="mt-1 block w-full text-sm text-gray-500
+        class="mt-1 block text-sm text-gray-500
                                       file:mr-4 file:py-2 file:px-4
                                       file:rounded-full file:border-0
                                       file:text-sm file:font-semibold
                                       file:bg-gray-100 file:text-gray-700
-                                      hover:file:bg-gray-200" />
+                                      hover:file:bg-gray-200
+                                      hover:cursor-pointer" />
     <x-input-error :messages="$errors->get('foto')" class="mt-2" />
 </div>
 

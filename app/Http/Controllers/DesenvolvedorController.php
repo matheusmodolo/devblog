@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Desenvolvedor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
 
 class DesenvolvedorController extends Controller
 {
@@ -35,6 +37,8 @@ class DesenvolvedorController extends Controller
             'email' => 'Email inválido',
             'min' => 'O campo "' . ucfirst(':attribute') . '" deve ter no mínimo :min caracteres',
             'max' => 'O campo "' . ucfirst(':attribute') . '" deve ter no máximo :max caracteres',
+            'image' => 'O campo "' . ucfirst(':attribute') . '" deve ser uma imagem',
+            'mimes' => 'O campo "' . ucfirst(':attribute') . '" deve ser uma imagem do tipo: jpeg, png, jpg, gif, svg',
         ];
 
         $regras = [
@@ -44,16 +48,16 @@ class DesenvolvedorController extends Controller
             'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
 
-        $request->validate($regras, $feedback);
+        $dados = $request->validate($regras, $feedback);
 
-        $foto = $request->file('foto');
-        $nomeFoto = time() . '.' . $foto->getClientOriginalExtension();
-        $foto->move(public_path('fotos'), $nomeFoto);
-        $request->merge(['foto' => $nomeFoto]);
+        $path = $request->file('foto')
+            ->store('fotos_desenvolvedores', 'public');
 
-        $desenvolvedor = Desenvolvedor::create($request->all());
+        $dados['foto'] = $path;
 
-        return redirect()->route('desenvolvedores.index');
+        Desenvolvedor::create($dados);
+
+        return redirect()->route('desenvolvedores.index')->with('sucesso', 'Desenvolvedor criado com sucesso!');
     }
 
     /**
@@ -86,27 +90,31 @@ class DesenvolvedorController extends Controller
         ];
 
         $regras = [
-            'nome'      => 'required|string|min:2|max:255',
-            'email'     => "required|email|unique:desenvolvedores,email,{$desenvolvedor->id}",
-            'biografia' => 'required|string|min:5|max:255',
-            'foto'      => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nome'      => ['required', 'string', 'min:2', 'max:255'],
+            'email'     => [
+                'required',
+                'email',
+                Rule::unique('desenvolvedores', 'email')
+                    ->ignore($desenvolvedor->id),
+            ],
+            'biografia' => ['required', 'string', 'min:5', 'max:255'],
+            'foto'      => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
         ];
 
         $dados = $request->validate($regras, $feedback);
 
         if ($request->hasFile('foto')) {
-            // $dados['foto'] = $request->file('foto')->store('fotos');
-            $foto = $request->file('foto');
-            $nomeFoto = time() . '.' . $foto->getClientOriginalExtension();
-            $foto->move(public_path('fotos'), $nomeFoto);
-            $dados['foto'] = $nomeFoto;
-        } else {
-            $dados['foto'] = $desenvolvedor->foto;
+            if ($desenvolvedor->foto) {
+                Storage::disk('public')->delete($desenvolvedor->foto);
+            }
+
+            $dados['foto'] = $request->file('foto')
+                ->store('fotos_desenvolvedores', 'public');
         }
 
         $desenvolvedor->update($dados);
 
-        return redirect()->route('desenvolvedores.index');
+        return redirect()->route('desenvolvedores.index')->with('sucesso', 'Desenvolvedor atualizado com sucesso!');
     }
 
     /**
@@ -114,8 +122,12 @@ class DesenvolvedorController extends Controller
      */
     public function destroy(Desenvolvedor $desenvolvedor)
     {
+        if (file_exists(public_path('storage/' . $desenvolvedor->foto))) {
+            unlink(public_path('storage/' . $desenvolvedor->foto));
+        }
+
         $desenvolvedor->delete();
 
-        return redirect()->route('desenvolvedores.index');
+        return redirect()->route('desenvolvedores.index')->with('sucesso', 'Desenvolvedor removido com sucesso!');
     }
 }
