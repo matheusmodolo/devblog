@@ -26,7 +26,7 @@
                     <div>
                         <p class="font-bold text-2xl text-gray-800 dark:text-gray-200 leading-tight">{{ $artigo->titulo }}</p>
                         <p class="text-sm text-gray-500 dark:text-gray-400">
-                            Publicado em {{ \Carbon\Carbon::parse($artigo->data_publicacao)->format('d/m/Y H:i') }}
+                            {{ \Carbon\Carbon::parse($artigo->data_publicacao)->locale('pt_BR')->isoFormat('d \d\e MMMM \d\e Y \à\s H:mm') }}
                         </p>
                     </div>
 

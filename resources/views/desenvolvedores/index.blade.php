@@ -68,6 +68,11 @@
                     </div>
                 </div>
             @endforelse
+
+            {{-- Paginação --}}
+            <div class="mt-6">
+                {{ $desenvolvedores->links() }}
+            </div>
         </div>
     </div>
 </x-app-layout>

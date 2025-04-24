@@ -14,7 +14,7 @@ class DesenvolvedorController extends Controller
      */
     public function index()
     {
-        $desenvolvedores = Desenvolvedor::all();
+        $desenvolvedores = Desenvolvedor::orderBy('nome')->paginate(5);
         return view('desenvolvedores.index', compact('desenvolvedores'));
     }
 

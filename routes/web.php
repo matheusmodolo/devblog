@@ -8,35 +8,24 @@ use App\Http\Controllers\DesenvolvedorController;
 use App\Http\Controllers\ArtigoController;
 use App\Http\Controllers\ArtigoDesenvolvedorController;
 
-// Route::get('/', function () {
-//     return view('index');
-// });
+Route::redirect('/dashboard', '/artigos')->name('dashboard');
+Route::redirect('/', '/artigos');
 
-Route::get('/', [IndexController::class, 'index'])->name('dashboard');
+Route::resource('artigos', ArtigoController::class);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('artigos', ArtigoController::class);
-
+    
     Route::resource('artigos_desenvolvedores', ArtigoDesenvolvedorController::class);
 });
 
 Route::prefix('/admin')->middleware(App\Http\Middleware\AdminMiddleware::class)->group(function () {
-    Route::get('/dashboard', function () {
-        return view('index');
-    });
 
-    // Route::resource('desenvolvedores', DesenvolvedorController::class);
     Route::resource('desenvolvedores', DesenvolvedorController::class)
         ->parameters(['desenvolvedores' => 'desenvolvedor']);
-});
-
-
-Route::get('/teste', function () {
-    dd(Auth::user(), Auth::user()->is_admin);
 });
 
 require __DIR__ . '/auth.php';

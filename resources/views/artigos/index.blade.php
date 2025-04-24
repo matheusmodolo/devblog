@@ -52,19 +52,22 @@
                                 </a>
                             </div>
                             <div>
-
-                                <a href="{{ route('artigos.edit', $artigo) }}">
-                                    <x-secondary-button class="px-3 py-2">
-                                        Editar
-                                    </x-secondary-button>
-                                </a>
-                                <form method="POST" action="{{ route('artigos.destroy', $artigo) }}"
-                                    onsubmit="return confirm('Deseja realmente excluir?')" class="inline-block">
-                                    @method('DELETE') @csrf
-                                    <x-danger-button class="px-3 py-2">
-                                        Excluir
-                                    </x-danger-button>
-                                </form>
+                                @auth
+                                    @if (Auth::user()->is_admin)
+                                        <a href="{{ route('artigos.edit', $artigo) }}">
+                                            <x-secondary-button class="px-3 py-2">
+                                                Editar
+                                            </x-secondary-button>
+                                        </a>
+                                        <form method="POST" action="{{ route('artigos.destroy', $artigo) }}"
+                                            onsubmit="return confirm('Deseja realmente excluir?')" class="inline-block">
+                                            @method('DELETE') @csrf
+                                            <x-danger-button class="px-3 py-2">
+                                                Excluir
+                                            </x-danger-button>
+                                        </form>
+                                    @endif
+                                @endauth
                             </div>
                         </div>
                     </div>
@@ -77,7 +80,7 @@
                 </div>
             @endforelse
 
-            {{-- Paginação, se você estiver usando paginate() --}}
+            {{-- Paginação --}}
             <div class="mt-6">
                 {{ $artigos->links() }}
             </div>
