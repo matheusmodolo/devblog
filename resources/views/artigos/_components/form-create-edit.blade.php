@@ -1,6 +1,6 @@
 @if (isset($artigo->id))
-    <form method="POST" action="{{ route('artigos.update', ['artigo' => $artigo->id]) }}"
-        enctype="multipart/form-data" class="space-y-6 p-6 text-gray-900 dark:text-gray-100">
+    <form method="POST" action="{{ route('artigos.update', ['artigo' => $artigo->id]) }}" enctype="multipart/form-data"
+        class="space-y-6 p-6 text-gray-900 dark:text-gray-100">
         @csrf
         @method('PUT')
     @else
@@ -26,8 +26,8 @@
 {{-- Título --}}
 <div>
     <x-input-label for="titulo" value="Título" />
-    <x-text-input id="titulo" name="titulo" type="text" value="{{ $artigo->titulo ?? old('titulo') }}"
-        required autofocus class="mt-1 block w-full" />
+    <x-text-input id="titulo" name="titulo" type="text" value="{{ $artigo->titulo ?? old('titulo') }}" required
+        autofocus class="mt-1 block w-full" />
     <x-input-error :messages="$errors->get('titulo')" class="mt-2" />
 </div>
 
@@ -43,16 +43,11 @@
 <div>
     <x-input-label for="desenvolvedores" value="Desenvolvedores" />
     <div class="mt-2 space-y-2">
-        @foreach($desenvolvedores as $dev)
+        @foreach ($desenvolvedores as $dev)
             <label for="dev-{{ $dev->id }}" class="flex items-center">
-                <input 
-                    id="dev-{{ $dev->id }}"
-                    name="desenvolvedores[]"
-                    type="checkbox"
-                    value="{{ $dev->id }}"
+                <input id="dev-{{ $dev->id }}" name="desenvolvedores[]" type="checkbox" value="{{ $dev->id }}"
                     class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 "
-                    {{ in_array($dev->id, $artigo->desenvolvedores()->get()->pluck('id')->toArray()?? old('desenvolvedores', [])) ? 'checked' : '' }}
-                />
+                    {{ in_array($dev->id, $artigo->desenvolvedores()->get()->pluck('id')->toArray() ?? old('desenvolvedores', [])) ? 'checked' : '' }} />
                 <span class="ml-2 text-gray-600 dark:text-gray-500">{{ $dev->nome }}</span>
             </label>
         @endforeach
@@ -67,7 +62,11 @@
     </a>
 
     <x-primary-button>
-        Publicar
+        @if (isset($artigo->id))
+            Salvar
+        @else
+            Publicar
+        @endif
     </x-primary-button>
 </div>
 </form>

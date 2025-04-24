@@ -5,7 +5,7 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 {{ $artigo->titulo }}
             </h2>
-            <a href="{{ route('artigos.index') }}"
+            <a href="{{ url()->previous() }}"
                 class="inline-flex items-center px-3 py-1 border border-transparent text-sm font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 transition">
                 Voltar
             </a>
@@ -26,7 +26,7 @@
                     <div>
                         <p class="font-bold text-2xl text-gray-800 dark:text-gray-200 leading-tight">{{ $artigo->titulo }}</p>
                         <p class="text-sm text-gray-500 dark:text-gray-400">
-                            Publicado em {{ \Carbon\Carbon::parse($artigo->data_publicacao)->format('d/m/Y') }}
+                            Publicado em {{ \Carbon\Carbon::parse($artigo->data_publicacao)->format('d/m/Y H:i') }}
                         </p>
                     </div>
 

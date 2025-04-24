@@ -12,7 +12,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-6 space-y-6">
             @forelse($artigos as $artigo)
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-col md:flex-row md:h-48 h-auto">
+                <div
+                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-col md:flex-row md:h-48 h-auto">
                     {{-- Capa --}}
                     @if ($artigo->foto_capa)
                         <div class="md:w-1/4">
@@ -24,12 +25,18 @@
                     {{-- Conteúdo resumo --}}
                     <div class="p-6 flex-1 flex flex-col justify-between">
                         <div>
+                            {{-- Data de Publicação --}}
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
+                                Publicado em
+                                {{ \Carbon\Carbon::parse($artigo->data_publicacao)->locale('pt_BR')->isoFormat('d \d\e MMMM \d\e Y') }}
+                            </p>
+
                             {{-- Título --}}
                             <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-100">
                                 {{ $artigo->titulo }}
                             </h2>
 
-                            {{-- Trecho (primeiros 50 caracteres) --}}
+                            {{-- Trecho do Conteúdo (primeiros 50 caracteres) --}}
                             <p class="mt-2 text-gray-600 dark:text-gray-300">
                                 {{ \Illuminate\Support\Str::limit(strip_tags($artigo->conteudo), 50) }}
                             </p>

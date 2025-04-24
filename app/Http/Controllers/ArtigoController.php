@@ -23,8 +23,9 @@ class ArtigoController extends Controller
      */
     public function create()
     {
+        $artigo = new Artigo();
         $desenvolvedores = Desenvolvedor::orderBy('nome')->get();
-        return view('artigos.create', compact('desenvolvedores'));
+        return view('artigos.create', compact('desenvolvedores', 'artigo'));
     }
 
     /**
@@ -119,7 +120,7 @@ class ArtigoController extends Controller
         $artigo->update($dados);
 
         $artigo->desenvolvedores()->detach();
-        
+
         $artigo->desenvolvedores()->sync($dados['desenvolvedores']);
 
         return redirect()->route('artigos.index')->with('sucesso', 'Artigo criado com sucesso!');
