@@ -12,9 +12,13 @@ class DesenvolvedorController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $desenvolvedores = Desenvolvedor::orderBy('nome')->paginate(5);
+        $desenvolvedores = Desenvolvedor::when($request->search, function ($query, $search) {
+            return $query->where('nome', 'like', "%{$search}%")
+                ->orWhere('email', 'like', "%{$search}%");
+        })
+            ->orderBy('nome')->paginate(5);
         return view('desenvolvedores.index', compact('desenvolvedores'));
     }
 

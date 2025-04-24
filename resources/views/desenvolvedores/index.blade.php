@@ -1,11 +1,18 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex justify-between">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <div class="flex justify-between items-center">
+            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight w-1/3">
                 Desenvolvedores
             </h2>
+
+            {{-- Campo de Busca --}}
+            <form action="{{ route('desenvolvedores.index') }}" method="GET" class="flex justify-end w-1/3">
+                <x-text-input name="search" placeholder="Buscar desenvolvedor…" class="mr-4"
+                    value="{{ request('search') }}" />
+                <x-primary-button>Buscar</x-primary-button>
+            </form>
             <a href="{{ route('desenvolvedores.create') }}"
-                class="inline-flex items-center px-3 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">Novo</a>
+                class="w-1/3 justify-end inline-flex items-center px-3 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">Novo</a>
         </div>
     </x-slot>
 

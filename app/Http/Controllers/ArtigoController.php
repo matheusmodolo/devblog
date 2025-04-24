@@ -12,9 +12,12 @@ class ArtigoController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $artigos = Artigo::orderBy('data_publicacao', 'desc')->paginate(5);
+        $artigos = Artigo::when($request->search, function ($query, $search) {
+            return $query->where('titulo', 'like', "%{$search}%")
+                ->orWhere('conteudo', 'like', "%{$search}%");
+        })->orderBy('data_publicacao', 'desc')->paginate(5);
         return view('artigos.index', compact('artigos'));
     }
 
