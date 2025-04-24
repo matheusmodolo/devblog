@@ -71,7 +71,7 @@
                                             </x-secondary-button>
                                         </a>
                                         <form method="POST" action="{{ route('artigos.destroy', $artigo) }}"
-                                            onsubmit="return confirm('Deseja realmente excluir?')" class="inline-block">
+                                            onsubmit="return confirmarExclusao(event)" class="inline-block">
                                             @method('DELETE') @csrf
                                             <x-danger-button class="px-3 py-2">
                                                 Excluir

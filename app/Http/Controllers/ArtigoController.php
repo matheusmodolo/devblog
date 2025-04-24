@@ -53,7 +53,7 @@ class ArtigoController extends Controller
         ];
 
         $dados = $request->validate($regras, $feedback);
-
+        
         $path = $request->file('foto_capa')
             ->store('fotos_artigos', 'public');
 
@@ -64,6 +64,8 @@ class ArtigoController extends Controller
         $artigo = Artigo::create($dados);
 
         $artigo->desenvolvedores()->sync($dados['desenvolvedores']);
+
+        toast('Sucesso', 'Artigo criado!', 'success');
 
         return redirect()->route('artigos.index')->with('sucesso', 'Artigo criado com sucesso!');
     }
@@ -126,6 +128,8 @@ class ArtigoController extends Controller
 
         $artigo->desenvolvedores()->sync($dados['desenvolvedores']);
 
+        toast('Sucesso', 'Artigo atualizado!', 'success');
+
         return redirect()->route('artigos.index')->with('sucesso', 'Artigo atualizado com sucesso!');
     }
 
@@ -141,6 +145,8 @@ class ArtigoController extends Controller
         $artigo->desenvolvedores()->detach();
 
         $artigo->delete();
+
+        toast('Sucesso', 'Artigo excluído!', 'success');
 
         return redirect()->route('artigos.index')->with('sucesso', 'Artigo removido com sucesso!');
     }

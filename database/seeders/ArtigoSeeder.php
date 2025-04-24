@@ -18,7 +18,7 @@ class ArtigoSeeder extends Seeder
 
         foreach (range(1, 20) as $index) {
             $image = $faker->randomElement($images);
-            $filename = time() . '_' . $image->getFilename();
+            $filename = time() . rand(1000, 9999) . '_' . $image->getFilename();
             Storage::disk('public')->putFileAs('fotos_capa', $image, $filename);
 
             Artigo::create([

@@ -61,7 +61,9 @@ class DesenvolvedorController extends Controller
 
         Desenvolvedor::create($dados);
 
-        return redirect()->route('desenvolvedores.index')->with('sucesso', 'Desenvolvedor criado com sucesso!');
+        toast('Sucesso', 'Desenvolvedor criado!', 'success');
+
+        return redirect()->route('desenvolvedores.index');
     }
 
     /**
@@ -118,7 +120,9 @@ class DesenvolvedorController extends Controller
 
         $desenvolvedor->update($dados);
 
-        return redirect()->route('desenvolvedores.index')->with('sucesso', 'Desenvolvedor atualizado com sucesso!');
+        toast('Sucesso', 'Desenvolvedor atualizado!', 'success');
+
+        return redirect()->route('desenvolvedores.index');
     }
 
     /**
@@ -130,8 +134,12 @@ class DesenvolvedorController extends Controller
             unlink(public_path('storage/' . $desenvolvedor->foto));
         }
 
+        $desenvolvedor->artigos()->detach();
+
         $desenvolvedor->delete();
 
-        return redirect()->route('desenvolvedores.index')->with('sucesso', 'Desenvolvedor removido com sucesso!');
+        toast('Sucesso', 'Desenvolvedor excluído!', 'success');
+
+        return redirect()->route('desenvolvedores.index');
     }
 }

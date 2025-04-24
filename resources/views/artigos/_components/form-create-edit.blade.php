@@ -42,7 +42,7 @@
 {{-- Desenvolvedores --}}
 <div>
     <x-input-label for="desenvolvedores" value="Desenvolvedores" />
-    <div class="mt-2 space-y-2">
+    <div class="mt-2 space-y-2 overflow-y-auto max-h-40">
         @foreach ($desenvolvedores as $dev)
             <label for="dev-{{ $dev->id }}" class="flex items-center">
                 <input id="dev-{{ $dev->id }}" name="desenvolvedores[]" type="checkbox" value="{{ $dev->id }}"

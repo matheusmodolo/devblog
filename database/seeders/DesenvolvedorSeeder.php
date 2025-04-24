@@ -18,7 +18,7 @@ class DesenvolvedorSeeder extends Seeder
 
         foreach (range(1, 10) as $index) {
             $image = $faker->randomElement($images);
-            $filename = time() . '_' . $image->getFilename();
+            $filename = time() . rand(1000, 9999) . '_' . $image->getFilename();
             Storage::disk('public')->putFileAs('fotos', $image, $filename);
 
             Desenvolvedor::create([
