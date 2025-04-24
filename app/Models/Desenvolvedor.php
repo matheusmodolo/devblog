@@ -14,4 +14,9 @@ class Desenvolvedor extends Model
         'biografia',
         'foto',
     ];
+
+    public function artigos()
+    {
+        return $this->belongsToMany(Artigo::class, 'artigos_desenvolvedores', 'desenvolvedor_id', 'artigo_id');
+    }
 }
