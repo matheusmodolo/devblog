@@ -126,7 +126,7 @@ class ArtigoController extends Controller
 
         $artigo->desenvolvedores()->sync($dados['desenvolvedores']);
 
-        return redirect()->route('artigos.index')->with('sucesso', 'Artigo criado com sucesso!');
+        return redirect()->route('artigos.index')->with('sucesso', 'Artigo atualizado com sucesso!');
     }
 
     /**
@@ -134,6 +134,14 @@ class ArtigoController extends Controller
      */
     public function destroy(Artigo $artigo)
     {
-        //
+        if (file_exists(public_path('storage/' . $artigo->foto_capa))) {
+            unlink(public_path('storage/' . $artigo->foto_capa));
+        }
+
+        $artigo->desenvolvedores()->detach();
+
+        $artigo->delete();
+
+        return redirect()->route('artigos.index')->with('sucesso', 'Artigo removido com sucesso!');
     }
 }
