@@ -12,11 +12,7 @@ use App\Http\Controllers\ArtigoDesenvolvedorController;
 //     return view('index');
 // });
 
-Route::get('/dashboard', [IndexController::class, 'index'])->name('dashboard');
-
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-})->middleware(['auth', 'verified']);
+Route::get('/', [IndexController::class, 'index'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

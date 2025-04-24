@@ -13,16 +13,18 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{__('Home')}}
                     </x-nav-link>
-
-                    <x-nav-link :href="route('desenvolvedores.index')" :active="request()->routeIs('desenvolvedores.index')">
-                        {{ __('Desenvolvedores') }}
-                    </x-nav-link>
-                    
-                    <x-nav-link :href="route('artigos.index')" :active="request()->routeIs('artigos.index')">
-                        {{ __('Artigos') }}
-                    </x-nav-link>
+                    @auth
+                        @if (Auth::user()->is_admin)
+                            <x-nav-link :href="route('desenvolvedores.index')" :active="request()->routeIs('desenvolvedores.index')">
+                                Desenvolvedores
+                            </x-nav-link>
+                        @endif
+                        <x-nav-link :href="route('artigos.index')" :active="request()->routeIs('artigos.index')">
+                            Artigos
+                        </x-nav-link>
+                    @endauth
                 </div>
             </div>
 
@@ -68,13 +70,13 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <a class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 focus:outline-none focus:text-gray-700 dark:focus:text-gray-300 focus:border-gray-300 dark:focus:border-gray-700 transition duration-150 ease-in-out"
                         href="{{ route('login') }}">
-                        Log in
+                        {{__('Log in')}}
                     </a>
 
                     @if (Route::has('register'))
                         <a href="{{ route('register') }}"
                             class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:border-gray-300 dark:hover:border-gray-700 focus:outline-none focus:text-gray-700 dark:focus:text-gray-300 focus:border-gray-300 dark:focus:border-gray-700 transition duration-150 ease-in-out">
-                            Register
+                            {{__('Register')}}
                         </a>
                     @endif
                 </div>
@@ -100,7 +102,7 @@
     <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                {{ __('Dashboard') }}
+                {{__('Home')}}
             </x-responsive-nav-link>
         </div>
 
