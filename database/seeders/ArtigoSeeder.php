@@ -23,7 +23,7 @@ class ArtigoSeeder extends Seeder
 
             Artigo::create([
                 'titulo'    => $faker->sentence,
-                'conteudo'  => $faker->paragraphs(3, true),
+                'conteudo'  => $faker->paragraphs(4, true),
                 'foto_capa' => 'fotos_capa/' . $filename,
             ]);
         }
