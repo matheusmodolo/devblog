@@ -11,11 +11,14 @@
             </form>
             @auth
                 @if (Auth::user()->is_admin)
-                    <a href="{{ route('artigos.create') }}"
-                        class="w-1/3 justify-end inline-flex items-center px-3 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">Novo</a>
+                    <div class="w-1/3 flex justify-end">
+                        <x-nav-link :href="route('desenvolvedores.create')" class="px-3 hover:border-transparent focus:border-transparent">
+                            Novo
+                        </x-nav-link>
+                    </div>
                 @endif
             @else
-            <div class="w-1/3"></div>
+                <div class="w-1/3"></div>
             @endauth
         </div>
     </x-slot>

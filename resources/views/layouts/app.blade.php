@@ -64,6 +64,40 @@
             // Garante que o form não seja enviado antes do usuário escolher
             return false;
         }
+
+
+        (function() {
+            const html = document.documentElement;
+            const btn = document.getElementById('theme-toggle');
+            const iconLight = document.getElementById('icon-light');
+            const iconDark = document.getElementById('icon-dark');
+
+            let theme = localStorage.getItem('theme');
+            if (!theme) {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
+            html.classList.toggle('dark', theme === 'dark');
+
+            // Ajusta o ícone
+            function updateIcon() {
+                if (html.classList.contains('dark')) {
+                    iconDark.classList.add('hidden');
+                    iconLight.classList.remove('hidden');
+                } else {
+                    iconLight.classList.add('hidden');
+                    iconDark.classList.remove('hidden');
+                }
+            }
+            updateIcon();
+
+            // No clique, alterna tema
+            btn.addEventListener('click', () => {
+                html.classList.toggle('dark');
+                const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
+                localStorage.setItem('theme', newTheme);
+                updateIcon();
+            });
+        })();
     </script>
 </body>
 
