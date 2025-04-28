@@ -1,7 +1,5 @@
 # DevBlog
 
----
-
 ## 🛠️ Pré-requisitos
 
 Antes de começar, instale as seguintes ferramentas:
@@ -120,7 +118,6 @@ Abra o terminal (ou Prompt de Comando/PowerShell no Windows) e siga estes passos
 
 Pronto! 🎉 O DevBlog deverá estar funcionando com artigos, desenvolvedores, upload de imagens e alertas SweetAlert configurados.
 
----
 
 Qualquer dúvida, abra uma issue ou entre em contato.
 
