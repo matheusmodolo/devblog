@@ -5,7 +5,7 @@
                 Artigos
             </h2>
             {{-- Campo de Busca --}}
-            <form action="{{ route('artigos.index') }}" method="GET" class="flex justify-end w-1/3">
+            <form action="{{ route('artigos.index') }}"  method="GET" class="flex justify-end w-1/3">
                 <x-text-input name="search" placeholder="Buscar artigo…" class="mr-4" value="{{ request('search') }}" />
                 <x-primary-button>Buscar</x-primary-button>
             </form>
@@ -27,7 +27,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 py-6 space-y-6">
             @forelse($artigos as $artigo)
                 <div
-                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-col md:flex-row md:h-48 h-auto">
+                    class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg flex flex-col md:flex-row h-auto">
                     {{-- Capa --}}
                     @if ($artigo->foto_capa)
                         <div class="md:w-1/4">
