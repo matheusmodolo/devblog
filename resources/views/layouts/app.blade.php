@@ -39,10 +39,10 @@
     <script>
         // Função global para confirmar exclusão
         function confirmarExclusao(event) {
-            // impede o envio automático do form
+            // Impede o envio automático do form
             event.preventDefault();
 
-            // dispara o modal de confirmação
+            // Dispara o modal de confirmação
             Swal.fire({
                 title: 'Você tem certeza?',
                 text: 'Esta ação não poderá ser desfeita.',
@@ -65,35 +65,49 @@
             return false;
         }
 
-
+        // Função auto-invocada para alternar temas
         (function() {
+            // Elemento HTML raiz
             const html = document.documentElement;
+            // Botão para alterar o tema
             const btn = document.getElementById('theme-toggle');
+            // Ícone do tema claro
             const iconLight = document.getElementById('icon-light');
+            // Ícone do tema escuro
             const iconDark = document.getElementById('icon-dark');
 
+            // Verifica se há um tema salvo no localStorage
             let theme = localStorage.getItem('theme');
+            // Se não houver tema salvo, define com base na preferência do sistema
             if (!theme) {
                 theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             }
+            // Aplica a classe 'dark' se o tema for escuro
             html.classList.toggle('dark', theme === 'dark');
 
-            // Ajusta o ícone
+            // Função para atualizar os ícones de tema
             function updateIcon() {
                 if (html.classList.contains('dark')) {
+                    // Esconde o ícone de tema escuro
                     iconDark.classList.add('hidden');
+                    // Mostra o ícone de tema claro
                     iconLight.classList.remove('hidden');
                 } else {
+                    // Esconde o ícone de tema claro
                     iconLight.classList.add('hidden');
+                    // Mostra o ícone de tema escuro
                     iconDark.classList.remove('hidden');
                 }
             }
             updateIcon();
 
-            // No clique, alterna tema
+            // Adiciona um evento de clique ao botão para alternar o tema
             btn.addEventListener('click', () => {
+                // Alterna a classe 'dark' no HTML
                 html.classList.toggle('dark');
+                // Define o novo tema
                 const newTheme = html.classList.contains('dark') ? 'dark' : 'light';
+                // Salva o novo tema no localStorage
                 localStorage.setItem('theme', newTheme);
                 updateIcon();
             });

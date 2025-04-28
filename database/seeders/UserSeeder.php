@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
     {
         $user = User::where('email', 'admin@email.com')->first();
 
+        // Cria o primeiro admin
         if (!$user) {
             User::create([
                 'name' => 'Admin',

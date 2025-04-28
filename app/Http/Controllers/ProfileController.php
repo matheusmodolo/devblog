@@ -34,6 +34,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
+        // Chama a função global para exibir um toast
         toast('Sucesso', 'Perfil atualizado!', 'success');
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');

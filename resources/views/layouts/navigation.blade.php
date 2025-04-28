@@ -15,6 +15,7 @@
                     <x-nav-link :href="route('artigos.index')" :active="request()->routeIs('artigos.index')">
                         Artigos
                     </x-nav-link>
+                    {{-- Se o usuário estiver autenticado e for admin, mostrar o link para desenvolvedores --}}
                     @auth
                         @if (Auth::user()->is_admin)
                             <x-nav-link :href="route('desenvolvedores.index')" :active="request()->routeIs('desenvolvedores.index')">
@@ -25,6 +26,7 @@
                 </div>
             </div>
 
+            {{-- Botão de alterar o tema --}}
             <div class="flex">
                 <button id="theme-toggle"
                     class="p-2 w-8 h-8 rounded-full hover:bg-gray-100 dark:hover:bg-gray-600 focus:outline-none my-auto"

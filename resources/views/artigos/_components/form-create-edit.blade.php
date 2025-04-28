@@ -1,9 +1,12 @@
+{{-- Verifica se está passando um artigo como parâmetro --}}
 @if (isset($artigo->id))
+    {{-- Formulário para atualizar um artigo existente --}}
     <form method="POST" action="{{ route('artigos.update', ['artigo' => $artigo->id]) }}" enctype="multipart/form-data"
         class="space-y-6 p-6 text-gray-900 dark:text-gray-100">
         @csrf
         @method('PUT')
     @else
+        {{-- Formulário para criar um novo artigo --}}
         <form method="POST" action="{{ route('artigos.store') }}" enctype="multipart/form-data"
             class="space-y-6 p-6 text-gray-900 dark:text-gray-100">
             @csrf

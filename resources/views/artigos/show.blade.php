@@ -24,7 +24,9 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100 space-y-4">
                     {{-- Título e Data --}}
                     <div>
-                        <p class="font-bold text-2xl text-gray-800 dark:text-gray-200 leading-tight">{{ $artigo->titulo }}</p>
+                        <p class="font-bold text-2xl text-gray-800 dark:text-gray-200 leading-tight">
+                            {{ $artigo->titulo }}</p>
+                        {{-- Mostra a data de publicação do artigo formatada como 'dd de mmmm de aaaa às hh:MM' --}}
                         <p class="text-sm text-gray-500 dark:text-gray-400">
                             {{ \Carbon\Carbon::parse($artigo->data_publicacao)->locale('pt_BR')->isoFormat('d \d\e MMMM \d\e Y \à\s H:mm') }}
                         </p>
@@ -32,6 +34,7 @@
 
                     {{-- Conteúdo Completo --}}
                     <div class="prose dark:prose-invert max-w-none py-4">
+                        {{-- Mostra o conteúdo do artigo com quebra de linha --}}
                         {!! nl2br(e($artigo->conteudo)) !!}
                     </div>
 
@@ -40,19 +43,20 @@
                         <div class="mt-4 border-t border-gray-200 dark:border-gray-600">
                             <h2 class="text-xl font-semibold mt-6">Desenvolvedores</h2>
                             <div class="mt-6 space-y-6">
-                                @foreach ($artigo->desenvolvedores as $dev)
+                                @foreach ($artigo->desenvolvedores as $desenvolvedor)
                                     <div class="flex items-start space-x-4">
-                                        @if ($dev->foto)
-                                            <img src="{{ asset('storage/' . $dev->foto) }}" alt="{{ $dev->nome }}"
+                                        @if ($desenvolvedor->foto)
+                                            <img src="{{ asset('storage/' . $desenvolvedor->foto) }}"
+                                                alt="{{ $desenvolvedor->nome }}"
                                                 class="w-14 h-14 rounded-full object-cover">
                                         @endif
                                         <div>
                                             <div class="font-semibold text-gray-800 dark:text-gray-100">
-                                                {{ $dev->nome }}
+                                                {{ $desenvolvedor->nome }}
                                             </div>
-                                            @if ($dev->email)
+                                            @if ($desenvolvedor->email)
                                                 <p class="text-sm text-gray-600 dark:text-gray-300">
-                                                    {{ $dev->email }}
+                                                    {{ $desenvolvedor->email }}
                                                 </p>
                                             @endif
                                         </div>

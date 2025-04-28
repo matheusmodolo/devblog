@@ -31,12 +31,16 @@
     </div>
     <script>
         (function() {
+            // Elemento HTML raiz
             const html = document.documentElement;
 
+            // Verifica se há um tema salvo no localStorage
             let theme = localStorage.getItem('theme');
+            // Se não houver tema salvo, define com base na preferência do sistema
             if (!theme) {
                 theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
             }
+            // Aplica a classe 'dark' se o tema for escuro
             html.classList.toggle('dark', theme === 'dark');
         })();
     </script>

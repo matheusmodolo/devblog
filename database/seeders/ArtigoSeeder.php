@@ -13,14 +13,20 @@ class ArtigoSeeder extends Seeder
     public function run()
     {
         $faker = Faker::create();
-        // Assuma que você tenha colocado imagens em database/seeders/imagens/artigos
+        // Imagens de capa de artigos
         $images = File::files(database_path('seeders/imagens/artigos'));
 
+        // Cria 20 artigos
         foreach (range(1, 20) as $index) {
+            // Escolhe uma imagem aleatória
             $image = $faker->randomElement($images);
+
+            // Cria um nome único para a imagem
             $filename = time() . rand(1000, 9999) . '_' . $image->getFilename();
+            // Upload da imagem
             Storage::disk('public')->putFileAs('fotos_capa', $image, $filename);
 
+            // Cria o artigo
             Artigo::create([
                 'titulo'    => $faker->sentence,
                 'conteudo'  => $faker->paragraphs(4, true),

@@ -1,9 +1,12 @@
+{{-- Verifica se está passando um desenvolvedor como parâmetro --}}
 @if (isset($desenvolvedor->id))
+    {{-- Formulário para atualizar um desenvolvedor existente --}}
     <form method="POST" action="{{ route('desenvolvedores.update', ['desenvolvedor' => $desenvolvedor->id]) }}"
         enctype="multipart/form-data" class="space-y-6 p-6 text-gray-900 dark:text-gray-100">
         @csrf
         @method('PUT')
     @else
+        {{-- Formulário para criar um novo desenvolvedor --}}
         <form method="POST" action="{{ route('desenvolvedores.store') }}" enctype="multipart/form-data"
             class="space-y-6 p-6 text-gray-900 dark:text-gray-100">
             @csrf

@@ -125,7 +125,7 @@
     "results": "resultados",
     "Role": "Função",
     "Save": "Salvar",
-    "Saved.": "Salvou",
+    "Saved.": "Salvo.",
     "Select A New Photo": "Selecione uma nova imagem",
     "Send Password Reset Link": "Enviar link para redefinir senha",
     "Server Error": "Erro no servidor",
@@ -197,5 +197,13 @@
     "Enter your email and password below to log in": "Digite seu e-mail e senha abaixo para entrar",
     "Don't have an account?": "Não tem uma conta?",
     "auth.failed": "Estas credenciais não correspondem aos nossos registros.",
-    "auth.throttle": "Muitas tentativas de login. Por favor, tente novamente em :minutes minutos e :seconds segundos."
+    "auth.throttle": "Muitas tentativas de login. Por favor, tente novamente em :minutes minutos e :seconds segundos.",
+    "validation.current_password": "A senha atual é inválida.",
+    "validation.email": "O endereço de e-mail é inválido.",
+    "validation.password_confirmation": "A confirmação da senha é inválida.",
+    "validation.password": "A senha é inválida.",
+    "validation.min.string": "O campo :attribute deve ter pelo menos :min caracteres.",
+    "validation.required": "O campo :attribute é obrigatório.",
+    "validation.confirmed": "A confirmação está incorreta.",
+    "Browse": "Procurar"
 }
