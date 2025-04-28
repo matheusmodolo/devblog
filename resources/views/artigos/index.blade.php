@@ -16,7 +16,7 @@
                 @if (Auth::user()->is_admin)
                     <div class="w-1/3 flex justify-end">
                         {{-- link para criar novo desenvolvedor --}}
-                        <x-nav-link :href="route('desenvolvedores.create')" class="px-3 hover:border-transparent focus:border-transparent">
+                        <x-nav-link :href="route('desenvolvedores.create')" class="px-3 border-none">
                             Novo
                         </x-nav-link>
                     </div>

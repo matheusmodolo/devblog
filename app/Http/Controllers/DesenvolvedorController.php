@@ -51,6 +51,7 @@ class DesenvolvedorController extends Controller
             'max' => 'O campo "' . ucfirst(':attribute') . '" deve ter no máximo :max caracteres',
             'image' => 'O campo "' . ucfirst(':attribute') . '" deve ser uma imagem',
             'mimes' => 'O campo "' . ucfirst(':attribute') . '" deve ser uma imagem do tipo: jpeg, png, jpg, gif, svg',
+            'foto.uploaded' => 'O upload da imagem falhou. Verifique seu tamanho e tente novamente.',
         ];
 
         $dados = $request->validate($regras, $feedback);
@@ -110,6 +111,7 @@ class DesenvolvedorController extends Controller
             'email' => 'Email inválido',
             'min' => 'O campo "' . ucfirst(':attribute') . '" deve ter no mínimo :min caracteres',
             'max' => 'O campo "' . ucfirst(':attribute') . '" deve ter no máximo :max caracteres',
+            'foto.uploaded' => 'O upload da imagem falhou. Verifique seu tamanho e tente novamente.',
         ];
 
         $dados = $request->validate($regras, $feedback);

@@ -53,6 +53,7 @@ class ArtigoController extends Controller
             'max' => 'O campo "' . ucfirst(':attribute') . '" deve ter no máximo :max caracteres',
             'image' => 'O campo "' . ucfirst(':attribute') . '" deve ser uma imagem',
             'mimes' => 'O campo "' . ucfirst(':attribute') . '" deve ser uma imagem do tipo: jpeg, png, jpg, gif, svg',
+            'foto_capa.uploaded' => 'O upload da imagem falhou. Verifique seu tamanho e tente novamente.',
         ];
 
         $dados = $request->validate($regras, $feedback);
@@ -105,7 +106,6 @@ class ArtigoController extends Controller
      */
     public function update(Request $request, Artigo $artigo)
     {
-
         $regras = [
             'titulo' => 'required|string|min:3|max:255',
             'conteudo' => 'required|string|min:10',
@@ -120,6 +120,7 @@ class ArtigoController extends Controller
             'max' => 'O campo "' . ucfirst(':attribute') . '" deve ter no máximo :max caracteres',
             'image' => 'O campo "' . ucfirst(':attribute') . '" deve ser uma imagem',
             'mimes' => 'O campo "' . ucfirst(':attribute') . '" deve ser uma imagem do tipo: jpeg, png, jpg, gif, svg',
+            'foto_capa.uploaded' => 'O upload da imagem falhou. Verifique seu tamanho e tente novamente.',
         ];
 
         $dados = $request->validate($regras, $feedback);

@@ -13,7 +13,7 @@
             </form>
 
             <div class="w-1/3 flex justify-end">
-                <x-nav-link :href="route('desenvolvedores.create')" class="px-3 hover:border-transparent focus:border-transparent">
+                <x-nav-link :href="route('desenvolvedores.create')" class="px-3 border-none">
                     Novo
                 </x-nav-link>
             </div>
