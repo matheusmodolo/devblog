@@ -4,7 +4,7 @@
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight w-1/3">
                 Artigos
             </h2>
-            
+
             {{-- Campo de Busca --}}
             <form action="{{ route('artigos.index') }}" method="GET" class="flex justify-end w-1/3">
                 <x-text-input name="search" placeholder="Buscar artigo…" class="mr-4" value="{{ request('search') }}" />
@@ -51,7 +51,7 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400">
                                 Publicado em
                                 {{-- Formata a data de publicação no formato 'dd de mmmm de aaaa' --}}
-                                {{ \Carbon\Carbon::parse($artigo->data_publicacao)->locale('pt_BR')->isoFormat('d \d\e MMMM \d\e Y') }}
+                                {{ \Carbon\Carbon::parse($artigo->data_publicacao)->locale('pt_BR')->isoFormat('D [de] MMMM [de] YYYY') }}
                             </p>
 
                             {{-- Título --}}

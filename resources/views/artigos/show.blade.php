@@ -28,7 +28,7 @@
                             {{ $artigo->titulo }}</p>
                         {{-- Mostra a data de publicação do artigo formatada como 'dd de mmmm de aaaa às hh:MM' --}}
                         <p class="text-sm text-gray-500 dark:text-gray-400">
-                            {{ \Carbon\Carbon::parse($artigo->data_publicacao)->locale('pt_BR')->isoFormat('d \d\e MMMM \d\e Y \à\s H:mm') }}
+                            {{ \Carbon\Carbon::parse($artigo->data_publicacao)->locale('pt_BR')->isoFormat('D [de] MMMM [de] YYYY [às] HH:mm') }}
                         </p>
                     </div>
 
