@@ -39,7 +39,7 @@ Abra o terminal (ou Prompt de Comando/PowerShell no Windows) e siga estes passos
 1. **Clone este repositório**
 
     ```bash
-    git clone https://seu-repositorio.git DevBlog
+    git clone https://github.com/matheusmodolo/devblog.git DevBlog
     cd DevBlog
     ```
 
