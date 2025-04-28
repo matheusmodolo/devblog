@@ -12,7 +12,7 @@ class ArtigoSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker::create();
+        $faker = Faker::create('pt_BR');
         // Imagens de capa de artigos
         $images = File::files(database_path('seeders/imagens/artigos'));
 
@@ -28,9 +28,10 @@ class ArtigoSeeder extends Seeder
 
             // Cria o artigo
             Artigo::create([
-                'titulo'    => $faker->sentence,
+                'titulo'    => $faker->sentence(),
                 'conteudo'  => $faker->paragraphs(4, true),
                 'foto_capa' => 'fotos_capa/' . $filename,
+                'data_publicacao' => $faker->dateTimeBetween('-1 years'),
             ]);
         }
     }

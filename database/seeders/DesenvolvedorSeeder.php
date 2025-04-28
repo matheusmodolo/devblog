@@ -12,8 +12,8 @@ class DesenvolvedorSeeder extends Seeder
 {
     public function run()
     {
-        $faker = Faker::create();
-        // Imagens de cdesenvolvedores
+        $faker = Faker::create('pt_BR');
+        // Imagens de desenvolvedores
         $images = File::files(database_path('seeders/imagens/desenvolvedores'));
 
         // Cria 10 desenvolvedores
@@ -28,9 +28,9 @@ class DesenvolvedorSeeder extends Seeder
 
             // Cria o desenvolvedor
             Desenvolvedor::create([
-                'nome'      => $faker->name,
+                'nome'      => $faker->name(),
                 'email'     => $faker->unique()->safeEmail,
-                'biografia' => $faker->paragraph,
+                'biografia' => $faker->text(),
                 'foto'      => 'fotos/' . $filename,
             ]);
         }
